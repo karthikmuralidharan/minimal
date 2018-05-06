@@ -1,14 +1,14 @@
 <div class="item">
 
     {{ $.Scratch.Set "link" .RelPermalink }}
-    {{ with .Params.repo }}
+        {{ with .Params.repo }}
         {{ $repoHost := default "github" $.Params.repoHost }}
         {{ if eq "github" $repoHost }}
-            {{ printf "https://github.com/%s/" $.Scratch.Set "link" }}
+            {{ printf "https://github.com/%s/" . | $.Scratch.Set "link" }}
         {{ else if eq "gitlab" $repoHost }}
-            {{ printf "https://gitlab.com/%s/" $.Scratch.Set "link" }}
+            {{ printf "https://gitlab.com/%s/" . | $.Scratch.Set "link" }}
         {{ else if eq "bitbucket" $repoHost }}
-            {{ printf "https://bitbucket.org/%s/" $.Scratch.Set "link" }}
+            {{ printf "https://bitbucket.com/%s/" . | $.Scratch.Set "link" }}
         {{ end }}
     {{ end }}
     {{ with .Params.link }} {{ $.Scratch.Set "link" . }`} {{ end }}
